@@ -40,6 +40,7 @@ int score_txt(vector <byte> inp){
   int score = 0;
   string rate = "ETAOINSHRDLU";
   for (int i = 0; i < inp.size(); ++i) {
+    // using is ascii is more sensible ?
     if( isprint( (char)inp[i]) == 0 && inp[i] != '\n'){
       return 0;
     }

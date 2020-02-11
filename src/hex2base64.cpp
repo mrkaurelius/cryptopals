@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <vector>
 
-typedef int8_t byte;
+typedef uint8_t byte;
 
 using namespace std;
 
@@ -29,7 +29,6 @@ string byte2base64str( vector<byte> inp ){
     // 1. baytı 0x03 ile & ile 4 sola kaydır | 2. baytı 4 saga kaydır  
     // 00XX0000 | 0000XXXX  
     //  2. baytı 0x0f ile & 2 sola kaydır | 3. baytı 6 saga kaydır 
-    // XXXXXXXX & 00001111 = 0000XXXX << 2 => 00XXXX00 | 000000XX
     // 3. baytın son 6 altı biti 
     
     int offset = inp.size() % 3;
@@ -53,11 +52,11 @@ string byte2base64str( vector<byte> inp ){
     }
 
     if(offset == 2){
-    base64_string[base64_string.size()-1] = '=';
+        base64_string[base64_string.size()-1] = '=';
     }
     if(offset == 1){
-    base64_string[base64_string.size()-1] = '=';
-    base64_string[base64_string.size()-2] = '=';
+        base64_string[base64_string.size()-1] = '=';
+        base64_string[base64_string.size()-2] = '=';
     }
 
     return base64_string;
