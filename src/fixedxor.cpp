@@ -3,32 +3,10 @@
 #include <cstdio>
 #include <vector>
 
-typedef int8_t byte;
+#include "cpalsutil/cpals_util.hpp"
 
-
+using namespace cpals_util;
 using namespace std;
-
-
-vector<byte> hex2byte( string inp ){
-    vector<byte> ret;
-
-     for (int i = 0; i < inp.size(); i+=2) {
-         string sub_string = inp.substr(i, 2);
-         ret.push_back(strtol(sub_string.c_str(), nullptr, 16));
-     }
-
-    return ret;
-}
-
-vector<byte> fixed_xor(vector<byte> key,vector<byte> inp){
-    vector<byte> ret;
-
-    for (int i = 0; i < inp.size(); ++i) {
-        ret.push_back(key[i] ^ inp[i]);
-    }
-
-    return ret;
-}
 
 
 int main(int argc, char *argv[])
@@ -42,16 +20,16 @@ int main(int argc, char *argv[])
 
     // bu problemlere yol acar mı ?
     if ( hex_input_string.size() % 2 != 0 ) {
-        std::cout << "stringi even yap" << std::endl;
+        cout << "stringi even yap" << endl;
         hex_input_string.insert(0, "0");
     }
 
-    vector<byte> input_bytes = hex2byte( hex_input_string );
-    vector<byte> xor_key_bytes = hex2byte( hex_xor_key );
-    vector<byte> output = fixed_xor(input_bytes, xor_key_bytes);
+    vector<cpbyte> input_bytes = hex2byte( hex_input_string );
+    vector<cpbyte> xor_key_bytes = hex2byte( hex_xor_key );
+    vector<cpbyte> output = fixed_xor(input_bytes, xor_key_bytes);
 
-    for ( auto i: output ) std::cout << i;
-    std::cout << std::endl;
+    for ( auto i: output ) cout << i;
+    cout << endl;
 
     return 0;
 }

@@ -6,41 +6,10 @@
 #include <cstring>
 #include <fstream>
 
-typedef int8_t byte;
-
+#include "cpalsutil/cpals_util.hpp"
 
 using namespace std;
-
-vector<byte> hex2byte( string inp ){
-  vector<byte> ret;
-
-  for (int i = 0; i < inp.size(); i+=2) {
-    string sub_string = inp.substr(i, 2);
-    ret.push_back(strtol(sub_string.c_str(), nullptr, 16));
-  }
-
-  return ret;
-}
-
-vector<byte> ascii2byte ( string inp ){
-  vector<byte> ret;
-
-  for (int i = 0; i < inp.size(); i++) {
-    ret.push_back((int)inp[i]);
-  }
-
-  return ret;
-}
-
-vector<byte> fixed_xor(vector<byte> key,vector<byte> inp){
-  vector<byte> ret;
-
-  for (int i = 0; i < inp.size(); ++i) {
-    ret.push_back(key[i] ^ inp[i]);
-  }
-
-  return ret;
-}
+using namespace cpals_util;
 
 
 // calc hamming distance in bit wise 
@@ -78,6 +47,7 @@ int main(int argc, char *argv[])
   std::ifstream file("6.txt");
   string line;
  
+  // BURADA KALDIM
   //std::cout << hamming_distance("this is a test","wokka wokka!!!") << std::endl;
   std::cout << hamming_distance("this is a test","wokka wokka!!!") << std::endl;
 
